@@ -10,4 +10,4 @@
     4.run Gomuku.py
     $python Gomuku.py
 ##  Screen shot
-    ![Gomoku](screenshot1.PNG)
+![Gomoku](https://raw.githubusercontent.com/shalayiding/Gomoku-Game/master/screenshot1.PNG)
