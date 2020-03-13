@@ -1,6 +1,7 @@
 import pygame 
 from player import Check_pos_inrange
 from player import check_who_win
+import Gomoku_AI
 #init the basic game function 
 pygame.init()
 width,height = 600,600
@@ -28,6 +29,8 @@ for i in range(17,width,40):
         all_location.append(tmp)
 
 
+
+
 white_current = [] #white first 
 black_current = []
 is_white = True
@@ -47,6 +50,16 @@ black_win_rect.center = (width//2,height//2)
 Game_Record = []
 record_f = open("Game_record.txt","a")
 RESET = False
+Gomoku_AI.Create_random_move(all_location)
+#board 
+board_status = []
+
+for j in range(8,height,40):
+    tmp = []
+    for i in range(17,width,40):    
+        tmp.append(0)
+    board_status.append(tmp)
+print(len(board_status))
 
 while Gaming:
     # for data in test_data:
@@ -54,6 +67,8 @@ while Gaming:
     
     for event in pygame.event.get():
         # print(event)
+        
+        #update_board_status 
         
 
         if white_win or black_win :

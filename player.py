@@ -11,30 +11,27 @@ def Check_pos_inrange(pos,all_location):
     return all_location[abs_diff.index(min(abs_diff))]
 
 def check_who_win(current):
-    same_w = {}
-    same_h = {}
-    for data in current:
-        if data[0] in same_w:
-            same_w[data[0]]+=1
-        elif data[0] not in same_w:
-            same_w[data[0]]=1
-
-        if data[1] in same_h:
-            same_h[data[1]]+=1
-        elif data[1] not in same_h:
-            same_h[data[1]]=1
-    #horizantal check 
-    for w in same_w:
-        if same_w[w] >=5:
-            return True
-    #vertical check 
-    for h in same_h:
-        if same_h[h] >=5:
-            return True
-    
+    check_horizontal=[]
+    check_vertical = []
     check_left_to_right = []
     check_right_to_left=[]
+
+
     for data in current:
+        tmp = [data[0]+40,data[1]+0]
+        while tmp in current:
+            check_horizontal.append(tmp)
+            tmp = [tmp[0]+40,tmp[1]]
+        if len(check_horizontal)>=4:
+            return True
+        
+        tmp = [data[0]+0,data[1]+40]
+        while tmp in current:
+            check_vertical.append(tmp)
+            tmp=[tmp[0],tmp[1]+40]
+        if len(check_vertical)>=4:
+            return True
+
         tmp = [data[0]+40,data[1]+40]
         while tmp in current:
             check_left_to_right.append(tmp)
@@ -49,6 +46,10 @@ def check_who_win(current):
             return True
         if len(check_right_to_left) >=4:
             return True
+            
         check_left_to_right =  list()
         check_right_to_left = list()
+        check_vertical=list()
+        check_horizontal=list()
+
     return False
